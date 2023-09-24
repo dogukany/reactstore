@@ -2,11 +2,11 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Home, Cart, Favorites } from "../screens";
 import { routes } from "../util/constants/routes";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import ProductsStack from "./ProductsStack";
+import ProductsStack from "./ProductsStackNavigator";
 
 const Tab = createBottomTabNavigator();
 
-const BottomNavigation = () => {
+const BottomTabNavigator = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
@@ -50,4 +50,4 @@ const BottomNavigation = () => {
   );
 };
 
-export default BottomNavigation;
+export default BottomTabNavigator;

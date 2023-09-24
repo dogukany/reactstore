@@ -1,5 +1,4 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
 import { Products } from "../screens";
 
 const Stack = createNativeStackNavigator();

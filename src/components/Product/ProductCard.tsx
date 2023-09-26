@@ -1,7 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import { ProductsStackParamList } from "../../navigation/ProductsStackNavigator";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   addToCart,
@@ -9,7 +7,8 @@ import {
   removeFromCart,
   removeFromFavorites,
 } from "../../redux/slices/userSlice";
-import { IProduct } from "../../util/types/sliceTypes";
+import type { ProductStackNavigatorProp } from "../../util/types/navigationTypes";
+import type { IProduct } from "../../util/types/sliceTypes";
 import Button from "../Button/Button";
 import FavoriteButton from "./FavoriteButton";
 import styles from "./ProductCard.styles";
@@ -21,11 +20,6 @@ interface ProductCardProps {
   shouldNavigateToProductDetails?: boolean;
 }
 
-type Props = NativeStackNavigationProp<
-  ProductsStackParamList,
-  "ProductDetails"
->;
-
 const ProductCard = ({
   item,
   showCartButton,
@@ -33,7 +27,7 @@ const ProductCard = ({
   shouldNavigateToProductDetails,
 }: ProductCardProps) => {
   const dispatch = useAppDispatch();
-  const navigation = useNavigation<Props>();
+  const navigation = useNavigation<ProductStackNavigatorProp>();
   const { cart, favorites } = useAppSelector((state) => state.user);
 
   const isFavorite = favorites.includes(item.id);

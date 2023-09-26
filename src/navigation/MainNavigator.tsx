@@ -1,16 +1,16 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import BottomTabNavigator from "./BottomTabNavigator";
+import type { MainNavigatorParamsList } from "../util/types/navigationTypes";
 import AuthStack from "./AuthStackNavigator";
+import BottomTabNavigator from "./BottomTabNavigator";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<MainNavigatorParamsList>();
 
 const MainNavigator = () => {
-  //register or forgot password screens will be implemented later
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Main">
+      <Stack.Navigator initialRouteName="Auth">
         <Stack.Group key={"Auth"}>
           <Stack.Screen
             name="Auth"
@@ -21,7 +21,7 @@ const MainNavigator = () => {
           />
         </Stack.Group>
 
-        <Stack.Group key={"Main"}>
+        <Stack.Group key={"MainNavigator"}>
           <Stack.Screen
             name="Main"
             component={BottomTabNavigator}

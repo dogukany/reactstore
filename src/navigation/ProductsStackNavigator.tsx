@@ -2,12 +2,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SortProductsMenu from "../components/Product/SortProductsMenu";
 import { Products } from "../screens";
 import { ProductDetails } from "../screens/products";
-import { IProduct } from "../util/types/sliceTypes";
+import type { ProductsStackParamList } from "../util/types/navigationTypes";
 
-export type ProductsStackParamList = {
-  Products: undefined;
-  ProductDetails: { product: IProduct } | undefined;
-};
 
 const Stack = createNativeStackNavigator<ProductsStackParamList>();
 
@@ -21,7 +17,13 @@ const ProductsStack = () => {
           headerRight: () => <SortProductsMenu />,
         }}
       />
-      <Stack.Screen name={"ProductDetails"} component={ProductDetails} />
+      <Stack.Screen
+        name={"ProductDetails"}
+        component={ProductDetails}
+        options={{
+          title: "Product Details",
+        }}
+      />
     </Stack.Navigator>
   );
 };

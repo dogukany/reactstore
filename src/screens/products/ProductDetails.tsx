@@ -1,12 +1,13 @@
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Image, StyleSheet, Text, View } from "react-native";
-import type { ProductsStackParamList } from "../../navigation/ProductsStackNavigator";
+import { ProductsStackParamList } from "../../util/types/navigationTypes";
 
 type Props = NativeStackScreenProps<ProductsStackParamList, "ProductDetails">;
 const ProductDetails = ({ route }: Props) => {
   const product = route.params.product;
 
-  console.log(product.imageUrl);
+  if (!product) return null;
+
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={{ uri: product.imageUrl }} />

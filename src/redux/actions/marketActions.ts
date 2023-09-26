@@ -1,8 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-export const fetchProducts = createAsyncThunk("marketplace/fetchProducts", async () => {
-  const response = await fetch("https://honey-badgers-ecommerce.glitch.me/products");
-  const data = await response.json();
-  return data;
-});
-
+export const fetchProducts = createAsyncThunk(
+  "marketplace/fetchProducts",
+  async () => {
+    const response = await axios.get(
+      "https://honey-badgers-ecommerce.glitch.me/products"
+    );
+    return response.data;
+  }
+);

@@ -22,7 +22,7 @@ const BottomTabNavigator = () => {
         name={routes.ProductsStack}
         component={ProductsStack}
         options={{
-          title: "Products",
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="store" color={color} size={size} />
           ),

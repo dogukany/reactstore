@@ -1,9 +1,21 @@
-import { View, Text } from 'react-native'
+import { FlatList, Text } from "react-native";
+import { ProductCard } from "../../components";
+import { useAppSelector } from "../../redux/hooks";
 const Favorites = () => {
+  const { favorites } = useAppSelector((state) => state.user);
+  const { products } = useAppSelector((state) => state.marketplace);
+
+  const favoriteProducts = products.filter((product) =>
+    favorites.includes(product.id)
+  );
+
   return (
-    <View>
-      <Text>Favorites</Text>
-    </View>
-  )
-}
-export default Favorites
+    <FlatList
+      data={favoriteProducts}
+      ListEmptyComponent={() => <Text>No favorites</Text>}
+      renderItem={({ item }) => <ProductCard showFavoriteButton item={item} />}
+      keyExtractor={(_, index) => index.toString()}
+    />
+  );
+};
+export default Favorites;

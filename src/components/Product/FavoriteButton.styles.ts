@@ -5,5 +5,6 @@ export default StyleSheet.create({
     position: "absolute",
     top: 5,
     right: 10,
+    zIndex: 1,
   },
 });

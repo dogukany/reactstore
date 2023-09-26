@@ -13,9 +13,15 @@ import styles from "./ProductCard.styles";
 
 interface ProductCardProps {
   item: IProduct;
+  showFavoriteButton?: boolean;
+  showCartButton?: boolean;
 }
 
-const ProductCard = ({ item }: ProductCardProps) => {
+const ProductCard = ({
+  item,
+  showCartButton,
+  showFavoriteButton,
+}: ProductCardProps) => {
   const dispatch = useAppDispatch();
   const { cart, favorites } = useAppSelector((state) => state.user);
 
@@ -46,17 +52,24 @@ const ProductCard = ({ item }: ProductCardProps) => {
           uri: item.imageUrl,
         }}
       />
-      <FavoriteButton isFavorite={isFavorite} handleFavorite={handleFavorite} />
+      {showFavoriteButton && (
+        <FavoriteButton
+          isFavorite={isFavorite}
+          handleFavorite={handleFavorite}
+        />
+      )}
       <View style={styles.details}>
         <Text style={styles.title}>{item.name}</Text>
         <Text style={styles.price}>${item.price}</Text>
         <Text style={styles.description} numberOfLines={2}>
           {item.description}
         </Text>
-        <Button
-          text={isInCart ? "Remove from cart" : "Add to cart"}
-          onPress={handleCart}
-        />
+        {showCartButton && (
+          <Button
+            text={isInCart ? "Remove from cart" : "Add to cart"}
+            onPress={handleCart}
+          />
+        )}
       </View>
     </View>
   );

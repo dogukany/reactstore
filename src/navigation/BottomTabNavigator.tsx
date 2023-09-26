@@ -1,7 +1,7 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Cart, Favorites, Home } from "../screens";
-import ProductsStack from "./ProductsStackNavigator";
+import SortProductsMenu from "../components/Product/SortProductsMenu";
+import { Cart, Favorites, Home, Products } from "../screens";
 
 const Tab = createBottomTabNavigator();
 
@@ -19,10 +19,13 @@ const BottomTabNavigator = () => {
       />
       <Tab.Screen
         name={"ProductsStack"}
-        component={ProductsStack}
+        component={Products}
         options={{
           tabBarLabel: "Products",
-          headerShown: false,
+          headerRight: () => <SortProductsMenu />,
+          headerRightContainerStyle: {
+            paddingRight: 13,
+          },
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="store" color={color} size={size} />
           ),

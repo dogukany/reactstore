@@ -25,7 +25,7 @@ const Products = () => {
         <ProductCard
           showCartButton
           showFavoriteButton
-          shouldNavigateToProductDetails
+          shouldShowDescription
           item={item}
         />
       )}

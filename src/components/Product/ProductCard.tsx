@@ -1,4 +1,5 @@
-import { useNavigation } from "@react-navigation/native";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import { useRef } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
@@ -7,27 +8,28 @@ import {
   removeFromCart,
   removeFromFavorites,
 } from "../../redux/slices/userSlice";
-import type { ProductStackNavigatorProp } from "../../util/types/navigationTypes";
 import type { IProduct } from "../../util/types/sliceTypes";
 import Button from "../Button/Button";
 import FavoriteButton from "./FavoriteButton";
 import styles from "./ProductCard.styles";
+import ProductCardModal from "./ProductCardModal";
 
 interface ProductCardProps {
   item: IProduct;
   showFavoriteButton?: boolean;
   showCartButton?: boolean;
-  shouldNavigateToProductDetails?: boolean;
+  shouldShowDescription?: boolean;
 }
 
 const ProductCard = ({
   item,
   showCartButton,
   showFavoriteButton,
-  shouldNavigateToProductDetails,
+  shouldShowDescription,
 }: ProductCardProps) => {
   const dispatch = useAppDispatch();
-  const navigation = useNavigation<ProductStackNavigatorProp>();
+  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+
   const { cart, favorites } = useAppSelector((state) => state.user);
 
   const isFavorite = favorites.includes(item.id);
@@ -49,17 +51,13 @@ const ProductCard = ({
     }
   };
 
-  const navigateToProductDetails = () => {
-    if (shouldNavigateToProductDetails) {
-      navigation.navigate("ProductDetails", { product: item });
-    }
+  const showDescription = () => {
+    if (shouldShowDescription) bottomSheetModalRef.current?.present();
   };
 
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={navigateToProductDetails}
-    >
+    <TouchableOpacity style={styles.container} onPress={showDescription}>
+      <ProductCardModal item={item} ref={bottomSheetModalRef} />
       <Image
         style={styles.image}
         source={{

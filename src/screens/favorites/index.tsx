@@ -3,7 +3,7 @@ import { ProductCard } from "../../components";
 import { useAppSelector } from "../../redux/hooks";
 const Favorites = () => {
   const { favorites } = useAppSelector((state) => state.user);
-  const { products } = useAppSelector((state) => state.marketplace);
+  const { products } = useAppSelector((state) => state.market);
 
   const favoriteProducts = products.filter((product) =>
     favorites.includes(product.id)

@@ -1,6 +1,6 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import uuid from "react-native-uuid";
-import { IMarketState, IProduct } from "../../util/types/sliceTypes";
+import { IMarketState } from "../../util/types/sliceTypes";
 import { fetchProducts } from "../actions/marketActions";
 
 const initialState: IMarketState = {
@@ -26,17 +26,14 @@ const productsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(
-      fetchProducts.fulfilled,
-      (state, action: PayloadAction<IProduct[]>) => {
-        action.payload.forEach((item) => {
-          item.id = uuid.v4();
-        });
+    builder.addCase(fetchProducts.fulfilled, (state, action) => {
+      action.payload.forEach((item) => {
+        item.id = uuid.v4();
+      });
 
-        state.products.push(...action.payload);
-        state.status = "idle";
-      }
-    );
+      state.products.push(...action.payload);
+      state.status = "idle";
+    });
     builder.addCase(fetchProducts.pending, (state) => {
       state.status = "loading";
     });

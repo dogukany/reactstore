@@ -1,12 +1,42 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { userReducer, marketReducer } from "./slices";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { persistReducer, persistStore } from "redux-persist";
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+} from "redux-persist/es/constants";
+import { mapReducer, marketReducer, userReducer } from "./slices";
 
-export const store = configureStore({
-  reducer: {
+const persistConfig = {
+  key: "root",
+  storage: AsyncStorage,
+  blacklist: ["user", "market"],
+};
+
+const persistedReducer = persistReducer(
+  persistConfig,
+  combineReducers({
+    market: marketReducer,
     user: userReducer,
-    marketplace: marketReducer,
-  },
+    map: mapReducer,
+  })
+);
+
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
+
+export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 

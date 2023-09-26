@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 const Products = () => {
   const dispatch = useAppDispatch();
 
-  const { products, status } = useAppSelector((state) => state.marketplace);
+  const { products, status } = useAppSelector((state) => state.market);
 
   useEffect(() => {
     dispatch(fetchProducts());

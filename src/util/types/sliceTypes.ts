@@ -21,3 +21,8 @@ export interface IMarketState {
   status: "idle" | "loading" | "failed";
   error: string | undefined;
 }
+
+export interface ILocation {
+  latitude: number;
+  longitude: number;
+}

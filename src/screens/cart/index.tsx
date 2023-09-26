@@ -4,7 +4,7 @@ import Button from "../../components/Button/Button";
 import { useAppSelector } from "../../redux/hooks";
 const Cart = () => {
   const { cart } = useAppSelector((state) => state.user);
-  const { products } = useAppSelector((state) => state.marketplace);
+  const { products } = useAppSelector((state) => state.market);
 
   const cartProducts = products.filter((product) => cart.includes(product.id));
 

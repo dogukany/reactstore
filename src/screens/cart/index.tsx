@@ -22,10 +22,12 @@ const Cart = () => {
         ListEmptyComponent={() => <Text>Cart is empty</Text>}
       />
 
-      <View style={styles.checkoutContainer}>
-        <Text style={styles.checkoutText}>Total: {totalPrice}</Text>
-        <Button text="Checkout" onPress={() => {}} />
-      </View>
+      {cartProducts.length > 0 && (
+        <View style={styles.checkoutContainer}>
+          <Text style={styles.checkoutText}>Total: {totalPrice}</Text>
+          <Button text="Checkout" onPress={() => {}} />
+        </View>
+      )}
     </View>
   );
 };

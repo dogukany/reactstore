@@ -1,4 +1,7 @@
-import { Image, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { Image, Text, TouchableOpacity, View } from "react-native";
+import { ProductsStackParamList } from "../../navigation/ProductsStackNavigator";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   addToCart,
@@ -15,14 +18,22 @@ interface ProductCardProps {
   item: IProduct;
   showFavoriteButton?: boolean;
   showCartButton?: boolean;
+  shouldNavigateToProductDetails?: boolean;
 }
+
+type Props = NativeStackNavigationProp<
+  ProductsStackParamList,
+  "ProductDetails"
+>;
 
 const ProductCard = ({
   item,
   showCartButton,
   showFavoriteButton,
+  shouldNavigateToProductDetails,
 }: ProductCardProps) => {
   const dispatch = useAppDispatch();
+  const navigation = useNavigation<Props>();
   const { cart, favorites } = useAppSelector((state) => state.user);
 
   const isFavorite = favorites.includes(item.id);
@@ -44,8 +55,17 @@ const ProductCard = ({
     }
   };
 
+  const navigateToProductDetails = () => {
+    if (shouldNavigateToProductDetails) {
+      navigation.navigate("ProductDetails", { product: item });
+    }
+  };
+
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={navigateToProductDetails}
+    >
       <Image
         style={styles.image}
         source={{
@@ -71,7 +91,7 @@ const ProductCard = ({
           />
         )}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 export default ProductCard;

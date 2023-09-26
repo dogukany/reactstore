@@ -22,7 +22,12 @@ const Products = () => {
       ListFooterComponent={status === "loading" && <Loading />}
       data={products}
       renderItem={({ item }) => (
-        <ProductCard showCartButton showFavoriteButton item={item} />
+        <ProductCard
+          showCartButton
+          showFavoriteButton
+          shouldNavigateToProductDetails
+          item={item}
+        />
       )}
       keyExtractor={(_, index) => index.toString()}
       onEndReached={() => dispatch(fetchProducts())}

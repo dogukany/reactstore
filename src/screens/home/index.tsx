@@ -1,4 +1,5 @@
 import BottomSheet from "@gorhom/bottom-sheet";
+import ExpoStatusBar from "expo-status-bar/build/ExpoStatusBar";
 import { useRef } from "react";
 import { View } from "react-native";
 import MapView, { MapMarker, PROVIDER_GOOGLE } from "react-native-maps";
@@ -13,6 +14,7 @@ const Home = () => {
 
   return (
     <View style={{ flex: 1 }}>
+      <ExpoStatusBar translucent />
       <MapView
         provider={PROVIDER_GOOGLE}
         style={{ flex: 1 }}

@@ -12,16 +12,16 @@ const BottomTabNavigator = () => {
         name={"Home"}
         component={Home}
         options={{
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
         }}
       />
       <Tab.Screen
-        name={"ProductsStack"}
+        name={"Products"}
         component={Products}
         options={{
-          tabBarLabel: "Products",
           headerRight: () => <SortProductsMenu />,
           headerRightContainerStyle: {
             paddingRight: 13,

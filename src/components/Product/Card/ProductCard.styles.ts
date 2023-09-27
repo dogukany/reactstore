@@ -44,7 +44,6 @@ export default StyleSheet.create({
     fontSize: 10,
     marginBottom: 10,
   },
-  button: {},
   buttonText: {
     color: "#fff",
     fontSize: 12,

@@ -1,18 +1,18 @@
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useRef } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
   addToCart,
   addToFavorites,
   removeFromCart,
   removeFromFavorites,
-} from "../../redux/slices/userSlice";
-import type { IProduct } from "../../util/types/sliceTypes";
-import Button from "../Button/Button";
-import FavoriteButton from "./FavoriteButton";
+} from "../../../redux/slices/userSlice";
+import type { IProduct } from "../../../util/types/sliceTypes";
+import Button from "../../Button/Button";
+import FavoriteButton from "../FavoriteButton/FavoriteButton";
+import ProductCardModal from "../Modal/ProductCardModal";
 import styles from "./ProductCard.styles";
-import ProductCardModal from "./ProductCardModal";
 
 interface ProductCardProps {
   item: IProduct;

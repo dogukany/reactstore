@@ -2,7 +2,7 @@ import { BottomSheetBackdrop, BottomSheetModal } from "@gorhom/bottom-sheet";
 import { Image, Text, View } from "react-native";
 
 import { Ref, forwardRef, useCallback, useMemo } from "react";
-import type { IProduct } from "../../util/types/sliceTypes";
+import type { IProduct } from "../../../util/types/sliceTypes";
 import styles from "./ProductCardModal.styles";
 
 interface ProductCardModalProps {

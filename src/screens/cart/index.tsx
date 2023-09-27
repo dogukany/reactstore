@@ -24,7 +24,7 @@ const Cart = () => {
 
       {cartProducts.length > 0 && (
         <View style={styles.checkoutContainer}>
-          <Text style={styles.checkoutText}>Total: {totalPrice}</Text>
+          <Text style={styles.checkoutText}>Total: ${totalPrice}</Text>
           <Button text="Checkout" onPress={() => {}} />
         </View>
       )}

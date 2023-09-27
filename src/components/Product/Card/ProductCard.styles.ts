@@ -15,10 +15,9 @@ export default StyleSheet.create({
     alignItems: "center",
   },
   image: {
-    height: "50%",
-    width: "30%",
-    aspectRatio: 640 / 480,
-    resizeMode: "contain",
+    height: 80,
+    width: 100,
+    resizeMode: "cover",
   },
   details: {
     flex: 1,

@@ -18,8 +18,8 @@ This will start the expo server and open a browser window with a QR code. You ca
 
 ## Screenshots
 
-<img src="./screenshots/login.png" width="320" height="600" />
-<img src="./screenshots/home.png" width="320" height="600" />
-<img src="./screenshots/products.png" width="320" height="600" />
-<img src="./screenshots/favorites.png" width="320" height="600" />
-<img src="./screenshots/cart.png" width="320" height="600" />
+<img src="./screenshots/login.png" width="300" height="580" />
+<img src="./screenshots/home.png" width="300" height="580" />
+<img src="./screenshots/products.png" width="300" height="580" />
+<img src="./screenshots/favorites.png" width="300" height="580" />
+<img src="./screenshots/cart.png" width="300" height="580" />

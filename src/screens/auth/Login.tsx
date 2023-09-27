@@ -1,3 +1,4 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import {
@@ -25,17 +26,20 @@ const Login = () => {
 
   return (
     <KeyboardAvoidingView style={styles.container}>
+      <Ionicons name="logo-react" size={200} color="black" />
       <Text style={styles.field}>Username</Text>
       <TextInput
         style={styles.input}
         onChangeText={setUsername}
         value={username}
+        placeholder="Username"
       />
       <Text style={styles.field}>Password</Text>
       <TextInput
         style={styles.input}
         onChangeText={setPassword}
         value={password}
+        placeholder="Password"
       />
       <Button onPress={handleLogin} text="Login" />
     </KeyboardAvoidingView>
@@ -45,9 +49,10 @@ const Login = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
     paddingHorizontal: "10%",
+    paddingTop: 20,
   },
   field: {
     fontSize: 12,
